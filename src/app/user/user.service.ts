@@ -1,9 +1,22 @@
+import { UserModel } from './../model/user.model';
 import { Injectable } from '@angular/core';
+import{HttpClient}from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+ 
+  constructor(private http:HttpClient) { }
 
-  constructor() { }
+  public getUsers():Observable<UserModel[]>{
+
+    return this.http.get<UserModel[]>("http://localhost:8080/getUsers");
+    //imprime los usuarios en consola de crome para prueba  
+    //this.users = res as UserModel[];
+    
+    
+    
+  }
 }

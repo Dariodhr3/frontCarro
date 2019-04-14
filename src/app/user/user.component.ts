@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UserService } from './user.service';
+import { UserModel } from '../model/user.model';
 
 @Component({
   selector: 'app-user',
@@ -9,10 +10,19 @@ import { UserService } from './user.service';
   providers:[UserService]
 })
 export class UserComponent implements OnInit {
-
-  constructor(private UserService: UserService) { }
+private users: Array<UserModel>;
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.loadUser();
   }
+private loadUser(): void{
+
+this.userService.getUsers().subscribe(res => {
+this.users=res;
+//para verificar en consola de crome
+//console.log(res);
+});
+}
 
 }
