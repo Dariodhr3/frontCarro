@@ -19,4 +19,9 @@ export class UserService {
     
     
   }
+
+  public delete(user: UserModel):void{
+    this.http.post("http://localhost:8080/deleteUser", JSON.stringify( user)).subscribe();
+    
+      }
 }
